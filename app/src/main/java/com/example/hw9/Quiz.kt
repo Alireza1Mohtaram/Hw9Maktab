@@ -11,7 +11,6 @@ import com.example.hw9.databinding.ActivityQuizBinding
 
 class Quiz : AppCompatActivity() {
 
-
     private var q1 = Pair<String, Boolean>(
         "1.Vitamin C is also known by the chemical name of Ascorbic Acid",
         true
@@ -35,23 +34,21 @@ class Quiz : AppCompatActivity() {
     private var q10 =
         Pair("10.A person’s fingernails and hair continue to grow after they die", false)
     private var qeustions = mutableListOf(q1, q2, q3, q4, q5, q6, q7, q8, q9, q10)
-    private var qeustionsCheat = Array<Boolean>(10) { false }
+    private var qeustionsCheat = booleanArrayOf (false,false,false,false,false,false,false,false,false,false,)
 
     lateinit var luncher: ActivityResultLauncher<Intent>
-
     lateinit var binding: ActivityQuizBinding
 
     companion object {
         var conterState = 0
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         getLuncher()
-        firstinit()
+        initFirst(savedInstanceState)
 
         binding.btnTrue.setOnClickListener {
             getCurrentAnswer(true)
@@ -70,24 +67,13 @@ class Quiz : AppCompatActivity() {
         binding.btnPrev.setOnClickListener {
             pervQes()
         }
-
     }
-
     private fun getLuncher() {
         luncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             qeustionsCheat[conterState] = it.data?.getBooleanExtra("cheat", false) ?: false
-
         }
 
     }
-
-
-    private fun getCallback(): ActivityResultCallback<Boolean> {
-        return ActivityResultCallback {
-
-        }
-    }
-
     private fun notify(s: String) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
     }
@@ -98,8 +84,6 @@ class Quiz : AppCompatActivity() {
 
             conterState++
             binding.qesBox.text = qeustions[conterState].first
-
-
     }
 
     private fun pervQes() {
@@ -110,7 +94,6 @@ class Quiz : AppCompatActivity() {
             binding.qesBox.text = qeustions[conterState].first
 
     }
-
     private fun getCurrentAnswer(userAnswer: Boolean) {
 
         if (qeustions[conterState].second == userAnswer) {
@@ -125,10 +108,25 @@ class Quiz : AppCompatActivity() {
         notify("InCorrect!")
         return
     }
+    private fun initFirst(savedInstanceState: Bundle?){
 
-    private fun firstinit() {
+        conterState = savedInstanceState?.getInt("conterState")?:0
+        qeustionsCheat = savedInstanceState?.getBooleanArray("cheatArray")?:qeustionsCheat
         binding.qesBox.text = qeustions[conterState].first
-        binding.btnPrev.isEnabled = false
+        if (conterState == 0){
+            binding.btnPrev.isEnabled = false
+        }
+        else if (conterState == 9){
+            binding.btnNext.isEnabled = false
+        }
+
     }
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("conterState",conterState)
+        outState.putBooleanArray("cheatArray" , qeustionsCheat)
+        super.onSaveInstanceState(outState)
+    }
+
+
 
 }

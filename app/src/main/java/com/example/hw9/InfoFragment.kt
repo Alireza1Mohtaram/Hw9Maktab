@@ -37,7 +37,6 @@ class InfoFragment : Fragment(R.layout.info_fragment_layout) {
            if (saveData()) Toast.makeText(context,"SAVED!",Toast.LENGTH_SHORT).show()
            parentFragmentManager.commit {
                replace<DataFragment1>(R.id.data_fragment_con)
-               addToBackStack("Info")
                setReorderingAllowed(true)
            }
 
@@ -80,4 +79,5 @@ class InfoFragment : Fragment(R.layout.info_fragment_layout) {
         tvGenderResult.text = requireArguments().getString("gender", "Gender")
 
     }
+
 }

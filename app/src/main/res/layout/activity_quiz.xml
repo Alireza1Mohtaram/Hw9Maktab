@@ -11,14 +11,13 @@
         android:id="@+id/btnTrue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:text="True"
         app:layout_constraintEnd_toStartOf="@+id/btnFalse"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@id/guideline5"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/qesBox" />
 
     <Button
 
@@ -47,42 +46,33 @@
         android:id="@+id/qesBox"
         android:layout_width="346dp"
         android:layout_height="80dp"
-        android:layout_marginTop="120dp"
         android:gravity="center"
         android:padding="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPrev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:text="Perv"
         app:icon="@android:drawable/ic_media_previous"
         app:iconGravity="start"
-        app:layout_constraintEnd_toEndOf="@+id/btnTrue"
-        app:layout_constraintEnd_toStartOf="@+id/btnNext"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/btnNext" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCheat" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
         android:text="next"
         app:icon="@android:drawable/ic_media_next"
         app:iconGravity="end"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnPrev"
         app:layout_constraintTop_toBottomOf="@+id/btnCheat" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -97,6 +87,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
